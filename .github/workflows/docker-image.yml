@@ -26,7 +26,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: alfonsotubular/station
+        images: alfonsol/apple-alpha
         tags: |
           type=raw,value=${{ github.ref_name }}  
           type=sha,value=${{ github.sha }}     
