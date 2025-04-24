@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apple-alpha-deployment
+  labels:
+    app: apple-alpha
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: apple-alpha
+  template:
+    metadata:
+      labels:
+        app: apple-alpha
+    spec:
+      containers:
+      - name: apple-alpha
+        image: alfonsol/apple-alpha:latest
+        ports:
+        - containerPort: 8080
