@@ -26,13 +26,17 @@ docker compose up
 
 This will:
 * Build the Go app container (from Dockerfile)
-* Pull and run the official Redis image
-* Launch both on a shared internal network
+* Pull and run the official Redis, Postgres and rabbitmq images
+* Launch all on a shared internal network
 
 
 **Verify It's Working**
 
-You should see logs from your app and Redis. The app includes a health check for Redis interaction.  You can check health of the system going to:
+You should see logs from your app and redis, etc. The app includes a health check for Redis interaction.  You can check health of the app by going to:
+```
+http://localhost:8080/health
+```
+or to see "HELLO WORLD" go to
 ```
 http://localhost:8080
 ```
@@ -61,3 +65,5 @@ Included in the repo is "deployment.yaml" which can be applied to a kubernetes c
 **Important Note**
 
 * **Within Kubernetes the dns name "redis" needs to resolve to the production deployment redis instance.**   
+
+I suggest we use kubernetes since it has been predicted we will want to be using other services like redis, postgres or rabbit mq in the future.   I further suggest going with aws's eks so we don't need to manage the clusters/nodes ourselves. 
