@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+
 	var redisClient *redis.Client
 
 	redisClient = redis.NewClient(&redis.Options{
