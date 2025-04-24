@@ -23,8 +23,14 @@ func main() {
 	fmt.Println("Connected to Redis")
 
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Internal Server Error"))
+		if redisClient.Ping(ctx).Err() == nil {
+			w.WriteHeader(http.StatusOK)
+			w.Write([]byte("OK"))
+			return
+		} else {
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte("Redis connection failed"))
+		}
 	})
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
