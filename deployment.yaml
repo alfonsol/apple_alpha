@@ -1,3 +1,4 @@
+# For deployment to Kubernetes
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,6 +17,6 @@ spec:
     spec:
       containers:
       - name: apple-alpha
-        image: alfonsol/apple-alpha:latest
+        image: alfonsol/apple-alpha:latest # This is a real registry, but you'll need credentials from me.
         ports:
         - containerPort: 8080
