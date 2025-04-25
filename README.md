@@ -46,17 +46,22 @@ This repo is meant to build a single docker image (apple) for use in kubernetes.
 
 That being said, a docker-compose yaml is included to allow developers to stand up the service with the attendant dependencies (in this case, redis) for development purposes.  
 
-It is not intended for docker-compose to play any role in production.   This was chosen as kubernetes is too cumbersome for most development, but docker-compose isn't really a great container orchestration solutions.
+It is not intended for docker-compose to play any role in production.   This was chosen as kubernetes is too cumbersome for most development, but docker-compose isn't really a great container orchestration solution.
 
 Any kubernetes cluster will need to include a central redis deployment for app pods to communicate with.
 
 ## CI/CD
-On PR creation and PR Commit, this repository will build Go, test Go, build the docker image and push to docker hub.  The Docker user name and password are configured as github secrets.
+On PR creation, PR commit, and merge events, this repository will build go, run go tests, build the docker image and push the image to docker hub.  The Docker user name and password are configured as github secrets.
+
+Tests can be found in the main_test.go file.
+
+The built docker images are pushed to the alfonsol/apple-alpha registry in docker hub. 
 
 For more details on that look in the .github/workflows directory.
 
 ## Deployment
-For developer deployment see the quick start section.   For production this repo was built with kubernetes in mind, though any container orchestration stack would be fine.   
+For developer deployment see the quick start section.   For production this repo was built with kubernetes in mind, though any container orchestration stac
+k would be fine.   
 
 Included in the repo is "deployment.yaml" which can be applied to a kubernetes cluter via kubectl or any number of automations.
 
