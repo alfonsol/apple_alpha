@@ -67,6 +67,9 @@ Included in the repo is "deployment.yaml" which can be applied to a kubernetes c
 
 **I suggest we make use of Github actions to do actual deployments. An action would be triggered when we create a release,but await manual approval before proceeding.**
 
+The service provides a `/health` endpoint for kubernetes to check on for load balancing and routing between running instances.  It currently only checks for a redis connection.
+
+
 **Important Note**
 
 * **Within Kubernetes the dns name "redis" needs to resolve to the production deployment redis instance.**   
